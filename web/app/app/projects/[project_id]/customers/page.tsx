@@ -1,4 +1,11 @@
-import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
 
 type Props = {
@@ -34,17 +41,19 @@ export default async function Page(props: Props) {
         <Table>
           <TableHeader>
             <TableRow>
-              <th className="text-left">Id</th>
-              <th className="text-left">Email</th>
-              <th className="text-right">Created at</th>
+              <TableHead className="text-left">Id</TableHead>
+              <TableHead className="text-left">Email</TableHead>
+              <TableHead className="text-right">Created at</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {customers?.map((customer) => (
               <TableRow key={customer.id} className="text-zinc-700">
-                <td className="font-mono">{customer.id}</td>
-                <td>{customer.email}</td>
-                <td className="text-right">{formatDate(customer.created)}</td>
+                <TableCell className="font-mono">{customer.id}</TableCell>
+                <TableCell>{customer.email}</TableCell>
+                <TableCell className="text-right">
+                  {formatDate(customer.created)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
