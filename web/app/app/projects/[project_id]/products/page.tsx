@@ -1,3 +1,7 @@
 export default function Page() {
-  return <div>Products</div>;
+  return (
+    <div>
+      <h2 className="page-title">Products</h2>
+    </div>
+  );
 }

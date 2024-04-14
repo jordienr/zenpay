@@ -1,19 +1,12 @@
 import React from "react";
 import { getProject } from "../utils";
-import {
-  Check,
-  CheckCircle,
-  CreditCard,
-  ShoppingCart,
-  Smile,
-  X,
-} from "lucide-react";
+import { Check, CreditCard, ShoppingCart, Smile, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
-import { syncCustomers } from "@/lib/stripe";
+import { syncCustomers, syncProducts } from "@/lib/stripe";
 
 type Props = {
   params: {
@@ -125,10 +118,17 @@ const Overview = async (props: Props) => {
             Sync customers
           </Button>
         </form>
-        <Button variant={"secondary"}>
-          <ShoppingCart className="mr-2" />
-          Sync products
-        </Button>
+        <form
+          action={async () => {
+            "use server";
+            syncProducts({ project_id });
+          }}
+        >
+          <Button variant={"secondary"}>
+            <ShoppingCart className="mr-2" />
+            Sync products
+          </Button>
+        </form>
         <Button variant={"secondary"}>
           <CreditCard className="mr-2" />
           Sync subscriptions
