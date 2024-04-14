@@ -1,0 +1,50 @@
+"use server";
+import Stripe from "stripe";
+import { createClient } from "@/utils/supabase/server";
+
+export async function syncCustomers({ project_id }: { project_id: string }) {
+  "use server";
+
+  const supa = createClient();
+  const { data: project, error } = await supa
+    .from("projects")
+    .select("stripe_secret_key")
+    .eq("id", project_id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  if (!project) {
+    return;
+  }
+
+  const stripe = new Stripe(project.stripe_secret_key, {
+    apiVersion: "2024-04-10",
+  });
+
+  if (!stripe) {
+    return;
+  }
+
+  const { data: customers } = await stripe.customers.list();
+
+  console.log(customers);
+
+  if (!customers) {
+    return;
+  }
+
+  const customersWithProjectId = customers.map((customer) => ({
+    ...customer,
+    project_id,
+  }));
+
+  const res = await supa.from("customers").upsert(customersWithProjectId);
+
+  if (res.error) {
+    console.error(res.error);
+  }
+}
