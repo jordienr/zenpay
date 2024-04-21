@@ -9,6 +9,7 @@
   ],
   "main": "index.js",
   "scripts": {
+    "dev": "turbo dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:web": "npm run dev --workspace=web",
     "build:web": "npm run build --workspace=web",
