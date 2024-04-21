@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import React from "react";
 import { redirect } from "next/navigation";
-import { requireAuth } from "@/app/auth/utils";
+import { requireAuth } from "@/app/(auth)/auth/utils";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Trash } from "lucide-react";
 import { getProject } from "../../utils";
@@ -20,7 +20,8 @@ async function page({ params }: Props) {
   await requireAuth();
   const { data: project } = await getProject({ params });
 
-  const project_webhook_url = `https://api.zenpay.dev/api/projects/${params.project_id}/webhook`;
+  const _project_webhook_url = `https://api.zenpay.dev/api/stripe/${params.project_id}`;
+  const project_webhook_url = `https://api-90.localcan.dev/api/stripe/${params.project_id}`;
 
   if (!project) {
     return <div>Project not found</div>;
@@ -71,11 +72,12 @@ async function page({ params }: Props) {
       console.error(res.error);
     }
 
-    redirect("/app/projects");
+    redirect("/projects");
   }
 
   return (
-    <div className="p-4 grid">
+    <div className="grid">
+      <h1 className="page-title">Settings</h1>
       <section className="section">
         <h2 className="font-medium">Stripe configuration</h2>
         <p className="text-zinc-600">

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .section {
-  @apply bg-white p-4 rounded-xl shadow-sm;
+  @apply bg-white p-4 rounded-xl shadow-sm border;
 }
 form .actions {
   @apply flex justify-end;

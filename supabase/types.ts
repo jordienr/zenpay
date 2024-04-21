@@ -293,14 +293,19 @@ export type Database = {
       }
       subscriptions: {
         Row: {
+          application: string | null
           application_fee_percent: number | null
+          automatic_tax: Json | null
           billing_cycle_anchor: number | null
+          billing_cycle_anchor_config: Json | null
           billing_thresholds: Json | null
           cancel_at: number | null
           cancel_at_period_end: boolean | null
           canceled_at: number | null
+          cancellation_details: Json | null
           collection_method: string | null
           created: number | null
+          currency: string | null
           current_period_end: number | null
           current_period_start: number | null
           customer: string | null
@@ -308,36 +313,50 @@ export type Database = {
           default_payment_method: string | null
           default_source: string | null
           default_tax_rates: Json | null
+          description: string | null
           discount: Json | null
+          discounts: string[] | null
           ended_at: number | null
           id: string
+          invoice_settings: Json | null
           items: Json | null
           latest_invoice: string | null
           livemode: boolean | null
           metadata: Json | null
           next_pending_invoice_item_invoice: number | null
           object: string | null
+          on_behalf_of: string | null
           pause_collection: Json | null
+          payment_settings: Json | null
           pending_invoice_item_interval: Json | null
           pending_setup_intent: string | null
           pending_update: Json | null
           plan: string | null
+          project_id: string
+          quantity: number | null
           schedule: string | null
           start_date: number | null
           status: Database["public"]["Enums"]["subscription_status"] | null
+          test_clock: string | null
           transfer_data: Json | null
           trial_end: Json | null
+          trial_settings: Json | null
           trial_start: Json | null
         }
         Insert: {
+          application?: string | null
           application_fee_percent?: number | null
+          automatic_tax?: Json | null
           billing_cycle_anchor?: number | null
+          billing_cycle_anchor_config?: Json | null
           billing_thresholds?: Json | null
           cancel_at?: number | null
           cancel_at_period_end?: boolean | null
           canceled_at?: number | null
+          cancellation_details?: Json | null
           collection_method?: string | null
           created?: number | null
+          currency?: string | null
           current_period_end?: number | null
           current_period_start?: number | null
           customer?: string | null
@@ -345,36 +364,50 @@ export type Database = {
           default_payment_method?: string | null
           default_source?: string | null
           default_tax_rates?: Json | null
+          description?: string | null
           discount?: Json | null
+          discounts?: string[] | null
           ended_at?: number | null
           id: string
+          invoice_settings?: Json | null
           items?: Json | null
           latest_invoice?: string | null
           livemode?: boolean | null
           metadata?: Json | null
           next_pending_invoice_item_invoice?: number | null
           object?: string | null
+          on_behalf_of?: string | null
           pause_collection?: Json | null
+          payment_settings?: Json | null
           pending_invoice_item_interval?: Json | null
           pending_setup_intent?: string | null
           pending_update?: Json | null
           plan?: string | null
+          project_id: string
+          quantity?: number | null
           schedule?: string | null
           start_date?: number | null
           status?: Database["public"]["Enums"]["subscription_status"] | null
+          test_clock?: string | null
           transfer_data?: Json | null
           trial_end?: Json | null
+          trial_settings?: Json | null
           trial_start?: Json | null
         }
         Update: {
+          application?: string | null
           application_fee_percent?: number | null
+          automatic_tax?: Json | null
           billing_cycle_anchor?: number | null
+          billing_cycle_anchor_config?: Json | null
           billing_thresholds?: Json | null
           cancel_at?: number | null
           cancel_at_period_end?: boolean | null
           canceled_at?: number | null
+          cancellation_details?: Json | null
           collection_method?: string | null
           created?: number | null
+          currency?: string | null
           current_period_end?: number | null
           current_period_start?: number | null
           customer?: string | null
@@ -382,28 +415,44 @@ export type Database = {
           default_payment_method?: string | null
           default_source?: string | null
           default_tax_rates?: Json | null
+          description?: string | null
           discount?: Json | null
+          discounts?: string[] | null
           ended_at?: number | null
           id?: string
+          invoice_settings?: Json | null
           items?: Json | null
           latest_invoice?: string | null
           livemode?: boolean | null
           metadata?: Json | null
           next_pending_invoice_item_invoice?: number | null
           object?: string | null
+          on_behalf_of?: string | null
           pause_collection?: Json | null
+          payment_settings?: Json | null
           pending_invoice_item_interval?: Json | null
           pending_setup_intent?: string | null
           pending_update?: Json | null
           plan?: string | null
+          project_id?: string
+          quantity?: number | null
           schedule?: string | null
           start_date?: number | null
           status?: Database["public"]["Enums"]["subscription_status"] | null
+          test_clock?: string | null
           transfer_data?: Json | null
           trial_end?: Json | null
+          trial_settings?: Json | null
           trial_start?: Json | null
         }
         Relationships: [
+          {
+            foreignKeyName: "public_subscriptions_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "subscriptions_customer_fkey"
             columns: ["customer"]

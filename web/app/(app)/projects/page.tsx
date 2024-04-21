@@ -1,4 +1,4 @@
-import { requireAuth } from "@/app/auth/utils";
+import { requireAuth } from "@/app/(auth)/auth/utils";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -34,12 +34,12 @@ export default async function ProtectedPage() {
     }
 
     if (res.data) {
-      redirect(`/app/projects/${res.data[0].id}`);
+      redirect(`/projects/${res.data[0].id}`);
     }
   }
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto">
       <div className="flex justify-between items-center">
         <h1 className="page-title">Projects</h1>
         <Dialog>
@@ -74,7 +74,7 @@ export default async function ProtectedPage() {
         {projects?.map((project) => (
           <Link
             className="p-4 hover:bg-zinc-50 section font-medium"
-            href={`/app/projects/${project.id}`}
+            href={`/projects/${project.id}`}
             key={project.id}
           >
             {project.name}

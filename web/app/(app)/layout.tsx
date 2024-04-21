@@ -26,14 +26,18 @@ export default async function RootLayout({
         <div className="bg-white">
           <header className="max-w-2xl mx-auto flex items-center justify-between px-4 py-2">
             <Link
-              href="/app/projects"
-              className="font-bold tracking-tight text-3xl"
+              href="/projects"
+              className="font-bold tracking-tight flex items-center text-zinc-800"
             >
-              ✌️
+              <span className="text-2xl mr-1">✌️</span>
+              <span>Zenpay</span>
+              <span className="font-mono text-xs mx-2 text-orange-500">
+                BETA
+              </span>
             </Link>
             <nav>
               <Link
-                href="/app/projects"
+                href="/projects"
                 className="flex text-sm tracking-tight text-zinc-800 p-2 border rounded-full hover:bg-white transition-all"
               >
                 <FaUserAstronaut size="18" />
@@ -43,6 +47,9 @@ export default async function RootLayout({
         </div>
 
         <main className="">{children}</main>
+        <footer className="text-center py-12 text-sm text-zinc-600 font-mono tracking-tighter">
+          Zenpay Beta
+        </footer>
       </body>
     </html>
   );

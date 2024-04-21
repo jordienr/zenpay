@@ -33,9 +33,9 @@ export default async function Index() {
             <>
               <Link
                 className="p-2 px-3 text-xs font-medium tracking-tight text-zinc-800 rounded-full bg-white"
-                href="/app"
+                href="/projects"
               >
-                Dashboard
+                Projects
               </Link>
             </>
           ) : (
