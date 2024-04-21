@@ -4,7 +4,6 @@
   "private": true,
   "description": "The main zenpay monorepo",
   "workspaces": [
-    "sdk",
     "web"
   ],
   "main": "index.js",
